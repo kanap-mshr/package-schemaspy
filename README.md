@@ -1,0 +1,2 @@
+# package-schemaspy
+schemaspy
