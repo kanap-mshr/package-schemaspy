@@ -1,39 +1,61 @@
 
-# package-schemaspy
+# schemaspy
 
-## このリポジトリは何か
+---
 
-### 概要
+## 前提
 
-- schemaspy を汎用的にどんなプロジェクトでも使いやすいように整備を行ったもの
-
-### schemaspy について
-
-- schemaspy とは何か
-  - 既存のDBからER図などのデータベースドキュメントの自動生成を行うツール
-- schemaspy を使う利点
-  - ドキュメントの手動メンテナンスが不要になるため
-    - ドキュメントと実装が違う..！という状況を避けやすい
-    - ドキュメント作成工数が大幅に削減できる
-    - 常に最新のDBの状態を視覚的に確認できる
-    - 想定したスキーマ設計に実際なっているかの確認になる
-- schemaspy の懸念
-  - 実装ファーストになりがち?
-
-## 使い方
+- 以下のjavaがインストールされているマシンで実行する
 
 ```bash
-cd package-schemaspy/
-
-# .env-sample を参考に、対象のDBに合わせて .env を修正
-cp .env-sample .env
-vi .env
-
-# schemaspy.properties を、対象のDBに合わせて修正
-vi ./schemaspy/schemaspy.properties
-
-# データベースドキュメントを生成
-./scripts/create-er.sh
+> java -version
+java version "1.8.0_321"
+Java(TM) SE Runtime Environment (build 1.8.0_321-b07)
+Java HotSpot(TM) 64-Bit Server VM (build 25.321-b07, mixed mode)
 ```
+
+---
+
+## 動作確認Macスペック
+
+- M1
+
+  ```bash
+  sysctl -a machdep.cpu
+  # machdep.cpu.cores_per_package: 8
+  # machdep.cpu.core_count: 8
+  # machdep.cpu.logical_per_package: 8
+  # machdep.cpu.thread_count: 8
+  # machdep.cpu.brand_string: Apple M1
+  ```
+
+- OSバージョン
+
+  ```bash
+  > sw_vers
+  # ProductName:	macOS
+  # ProductVersion:	12.4
+  # BuildVersion:	21F79
+  ```
+
+---
+
+## DB接続情報
+
+- schemaspy.properties をER図生成したい環境に向けて修正する
+
+  ```bash
+  vim ./schemaspy.properties
+  ```
+
+---
+
+## コマンド
+
+- ER図生成 (すでに `./output` が存在している場合は削除される)
+
+  ```bash
+  ./create.sh
+  ```
 
 
